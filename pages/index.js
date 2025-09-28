@@ -8,7 +8,7 @@ import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 
 // Import the getSortedPostsData function from the posts library to fetch and sort blog post data
-import { getSortedPostsData } from '../lib/posts-json';
+import { getSortedPostsData } from '../lib/posts-firebase';
 // Import the Date component to format and display publication dates for blog posts
 import Date from '../components/date';
 
@@ -17,7 +17,7 @@ import Date from '../components/date';
 // This function fetches data before the page is rendered, enabling static site generation (SSG)
 export async function getStaticProps() {
   // Fetch and sort all blog post data from the markdown files in the posts directory
-  const allPostsData = getSortedPostsData();
+  const allPostsData = await getSortedPostsData();
   // Return the data as props that will be passed to the Home component
   return {
     props: {

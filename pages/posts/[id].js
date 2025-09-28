@@ -1,7 +1,7 @@
 // Import the Layout component for consistent page structure
 import Layout from '../../components/layout'; 
 // Import utility functions to get all post IDs and individual post data
-import { getAllPostIds, getPostData } from '../../lib/posts-json';
+import { getAllPostIds, getPostData } from '../../lib/posts-firebase';
 // Import Next.js Head component for managing page metadata
 import Head from 'next/head';
 // Import custom Date component for formatting dates
@@ -31,7 +31,7 @@ export async function getStaticProps({ params }) {
 // This function tells Next.js which dynamic routes should be statically generated at build time
 export async function getStaticPaths() {
   // Get all available post IDs to determine which pages to generate
-  const paths = getAllPostIds();
+  const paths = await getAllPostIds();
   return {
     paths, // Array of paths to pre-render
     fallback: false, // If a path is not found, return 404 (no fallback generation)
